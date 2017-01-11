@@ -1,0 +1,16 @@
+.btn-margin {
+  margin-top: 7px
+}
+
+a {
+  cursor: pointer;
+}
+
+.profile-area img {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.panel-body h3 {
+  margin-top: 0;
+}

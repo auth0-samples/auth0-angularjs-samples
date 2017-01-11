@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Auth0 - Angular</a>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ui-sref="home">
+          Home
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ng-if="!vm.auth.isAuthenticated()"
+        ui-sref="login">
+          Log In
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ng-if="vm.auth.isAuthenticated()"
+        ng-click="vm.auth.logout()">
+          Log Out
+      </button>
+
+    </div>
+  </div>
+</nav>
