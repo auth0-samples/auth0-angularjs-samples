@@ -52,6 +52,7 @@
     function getRole() {
       var namespace = 'https://example.com';
       var idToken = localStorage.getItem('id_token');
+      if (!idToken) return null;
       return jwt_decode(idToken)[namespace + '/role'] || null;
     }
 

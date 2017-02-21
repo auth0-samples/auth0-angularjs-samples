@@ -1,4 +1,5 @@
 .DS_Store
 node_modules
 auth0-variables.ts
+npm-debug.log
 .env

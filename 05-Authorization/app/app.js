@@ -35,19 +35,29 @@
         url: '/profile',
         controller: 'ProfileController',
         templateUrl: 'app/profile/profile.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          requiresLogin: true
+        }
       })
       .state('admin', {
         url: '/admin',
         controller: 'AdminController',
         templateUrl: 'app/admin/admin.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: { 
+          requiresLogin: true,
+          accessLevel: 'admin'
+        }
       })
       .state('ping', {
         url: '/ping',
         controller: 'PingController',
         templateUrl: 'app/ping/ping.html',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        data: {
+          requiresLogin: true
+        }
       })
       .state('callback', {
         url: '/callback',
