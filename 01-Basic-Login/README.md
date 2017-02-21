@@ -6,7 +6,7 @@ This sample demonstrates how to add authentication to an AngularJS application u
 
 If you haven't already done so, [sign up](https://auth0.com) for your free Auth0 account and create a new client in the [dashboard](https://manage.auth0.com). Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box. If you are using the server provided in this sample, that URL is `http://localhost:3000`.
 
-Clone the repo or download it from the Angular 1 quickstart page in Auth0's documentation. Install the dependencies for the app.
+Clone the repo or download it from the AngularJS quickstart page in Auth0's documentation. Install the dependencies for the app.
 
 ```bash
 cd 01-Basic-Login

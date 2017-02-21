@@ -33,6 +33,15 @@
       });
     }
 
+    vm.adminPing = function() {
+      vm.message = '';
+      $http.get(API_URL + '/private/admin').then(function(result) {
+        vm.message = result.data.message;
+      }, function(error) {
+        vm.message = error;
+      });
+    }
+
   }
 
 })();

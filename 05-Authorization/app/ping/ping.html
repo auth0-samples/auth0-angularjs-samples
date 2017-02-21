@@ -17,4 +17,12 @@
     Call Private
 </button>
 
+<button 
+  class="btn btn-primary"
+  ng-click="vm.adminPing()" 
+  ng-if="vm.auth.isAuthenticated()
+  && vm.auth.isAdmin()">
+    Call Admin
+</button>
+
 <h2>{{ vm.message }}</h2>
