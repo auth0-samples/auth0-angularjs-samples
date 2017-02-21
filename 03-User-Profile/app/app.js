@@ -27,6 +27,12 @@
         templateUrl: 'app/home/home.html',
         controllerAs: 'vm'
       })
+      .state('profile', {
+        url: '/profile',
+        controller: 'ProfileController',
+        templateUrl: 'app/profile/profile.html',
+        controllerAs: 'vm'
+      })
       .state('callback', {
         url: '/callback',
         controller: 'CallbackController',
@@ -41,8 +47,11 @@
         auth: {
           responseType: 'token id_token',
           audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
-          redirectUrl: AUTH0_CALLBACK_URL
-        }       
+          redirectUrl: AUTH0_CALLBACK_URL,
+          params: {
+            scope: 'openid profile'
+          }
+        }
       }
     });
 

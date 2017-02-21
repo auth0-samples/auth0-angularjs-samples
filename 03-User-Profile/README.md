@@ -1,6 +1,6 @@
-# Auth0 AngularJS Login
+# Auth0 AngularJS User Sessions
 
-This sample demonstrates how to add authentication to an AngularJS application using Auth0's Lock widget. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
+This sample demonstrates how to get a user's profile using Auth0 in an AngularJS application. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ If you haven't already done so, [sign up](https://auth0.com) for your free Auth0
 Clone the repo or download it from the Angular 1 quickstart page in Auth0's documentation. Install the dependencies for the app.
 
 ```bash
-cd 01-Basic-Login
+cd 03-User-Sessions
 npm install
 ```
 

@@ -6,47 +6,45 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$location', '$state', 'lock'];
+  authService.$inject = ['$state', 'angularAuth0'];
 
-  function authService($location, $state, lock) {
+  function authService($state, angularAuth0) {
 
-    var userProfile;
-
-    function login() {
-      lock.show();
-    }
-    
-    function handleAuthentication() {
-      lock.interceptHash();
-      lock.on('authenticated', function(authResult) {
-        if (authResult && authResult.accessToken && authResult.idToken) {
+    function login(username, password) {
+      angularAuth0.client.login({
+        realm: 'Username-Password-Authentication',
+        username: username,
+        password: password,
+      }, function(err, authResult) {
+        if (err) alert(err);
+        if (authResult && authResult.idToken) {
           setSession(authResult);
           $state.go('home');
-        } else if (authResult && authResult.error) {
-          alert(authResult.error);
         }
       });
     }
 
-    function fetchProfile(cb) {
-      var accessToken = localStorage.getItem('access_token');
-      if (!accessToken) {
-        throw 'Access token must exist to fetch profile';
-      }
-      lock.getUserInfo(accessToken, function(err, profile) {
-        if (profile) {
-          setUserProfile(profile);
-        }
-        cb(err, profile);
+    function signup(username, password) {
+      angularAuth0.redirect.signupAndLogin({
+        connection: 'Username-Password-Authentication',
+        email: username,
+        password: password
       });
     }
 
-    function setUserProfile(profile) {
-      userProfile = profile;
+    function loginWithGoogle() {
+      angularAuth0.authorize({
+        connection: 'google-oauth2'
+      });
     }
-
-    function getCachedProfile() {
-      return userProfile;
+    
+    function handleParseHash() {
+      angularAuth0.parseHash(function(err, authResult) {
+        if (authResult && authResult.idToken) {
+          setSession(authResult);
+          $state.go('home');
+        }
+      });
     }
 
     function setSession(authResult) {
@@ -56,13 +54,12 @@
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
     }
-
+    
     function logout() {
       // Remove tokens and expiry time from localStorage
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
-      $state.go('home');
     }
     
     function isAuthenticated() {
@@ -74,9 +71,9 @@
 
     return {
       login: login,
-      fetchProfile: fetchProfile,
-      getCachedProfile: getCachedProfile,
-      handleAuthentication: handleAuthentication,
+      signup: signup,
+      loginWithGoogle: loginWithGoogle,
+      handleParseHash: handleParseHash,
       logout: logout,
       isAuthenticated: isAuthenticated
     }

@@ -34,9 +34,9 @@ npm start
 
 The application will be served at `http://localhost:3000`.
 
-## Using HTML5 Mode
+## Turning Off HTML5 Mode
 
-If you wish to not include a hashbang in the URL of your application, you can run it in HTML5 Mode. This can be configured using `$locationProvider` and this line in `app.js` can be uncommented to activate it:
+By default, the sample is run in HTML5 mode. This means that routes in the URL will not have a hash. If you wish to not use HTML5 mode, comment on this line in `app.js`:
 
 ```js
 $locationProvider.html5Mode(true);

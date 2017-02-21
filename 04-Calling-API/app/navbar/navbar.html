@@ -19,6 +19,13 @@
       <button
         class="btn btn-primary btn-margin"
         ng-if="vm.auth.isAuthenticated()"
+        ui-sref="profile">
+          Profile
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        ng-if="vm.auth.isAuthenticated()"
         ui-sref="ping">
           Ping
       </button>
