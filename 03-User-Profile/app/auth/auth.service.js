@@ -6,9 +6,9 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$location', '$state', 'lock'];
+  authService.$inject = ['$state', 'lock'];
 
-  function authService($location, $state, lock) {
+  function authService($state, lock) {
 
     var userProfile;
 
@@ -28,7 +28,7 @@
       });
     }
 
-    function fetchProfile(cb) {
+    function getProfile(cb) {
       var accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
         throw 'Access token must exist to fetch profile';
@@ -62,6 +62,7 @@
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
+      userProfile = null;
       $state.go('home');
     }
     
@@ -74,7 +75,7 @@
 
     return {
       login: login,
-      fetchProfile: fetchProfile,
+      getProfile: getProfile,
       getCachedProfile: getCachedProfile,
       handleAuthentication: handleAuthentication,
       logout: logout,

@@ -6,9 +6,9 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$location', '$state', 'lock'];
+  authService.$inject = ['$state', 'lock'];
 
-  function authService($location, $state, lock) {
+  function authService($state, lock) {
 
     function login() {
       lock.show();

@@ -17,7 +17,7 @@
     if (authService.getCachedProfile()) {
       vm.profile = authService.getCachedProfile();
     } else {
-      authService.fetchProfile(function(err, profile) {
+      authService.getProfile(function(err, profile) {
         vm.profile = profile;
       });
     }

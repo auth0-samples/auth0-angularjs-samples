@@ -34,7 +34,7 @@
         controllerAs: 'vm'
       });
 
-    // Initialization for the angular-auth0 library
+    // Initialization for the angular-lock library
     lockProvider.init({ clientID: AUTH0_CLIENT_ID, domain: AUTH0_DOMAIN, options: {
         oidcConformant: true,
         autoclose: true,

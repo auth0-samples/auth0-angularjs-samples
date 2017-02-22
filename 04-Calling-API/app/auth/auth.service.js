@@ -6,9 +6,9 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$location', '$state', 'lock'];
+  authService.$inject = ['$state', 'lock'];
 
-  function authService($location, $state, lock) {
+  function authService($state, lock) {
 
     var userProfile;
 
@@ -62,6 +62,7 @@
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
+      userProfile = null;
       $state.go('home');
     }
     

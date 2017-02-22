@@ -38,7 +38,7 @@
       });
     }
     
-    function handleParseHash() {
+    function handleAuthentication() {
       angularAuth0.parseHash(function(err, authResult) {
         if (authResult && authResult.idToken) {
           setSession(authResult);
@@ -73,7 +73,7 @@
       login: login,
       signup: signup,
       loginWithGoogle: loginWithGoogle,
-      handleParseHash: handleParseHash,
+      handleAuthentication: handleAuthentication,
       logout: logout,
       isAuthenticated: isAuthenticated
     }
