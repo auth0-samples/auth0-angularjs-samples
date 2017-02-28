@@ -6,9 +6,9 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$state', 'angularAuth0'];
+  authService.$inject = ['$state', 'angularAuth0', '$timeout'];
 
-  function authService($state, angularAuth0) {
+  function authService($state, angularAuth0, $timeout) {
 
     function login(username, password) {
       angularAuth0.client.login({
@@ -43,6 +43,11 @@
         if (authResult && authResult.idToken) {
           setSession(authResult);
           $state.go('home');
+        } else if (err) {
+          $timeout(function() {
+            $state.go('home');
+          });
+          alert('Error: ' + err.error);
         }
       });
     }
