@@ -1,7 +1,7 @@
 {
-  "name": "custom-login",
+  "name": "hosted-login",
   "version": "0.0.0",
-  "description": "Implement a custom login form with Auth0",
+  "description": "Implement a Auth0 authentication using the hosted login page",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"
