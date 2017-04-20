@@ -1,7 +1,7 @@
 {
-  "name": "login",
+  "name": "embedded-login",
   "version": "0.0.0",
-  "description": "Implement a custom login form with Auth0",
+  "description": "Implement authentication with Auth0 using embedded Lock",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"

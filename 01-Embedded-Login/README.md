@@ -1,6 +1,6 @@
-# Auth0 AngularJS Login
+# Auth0 AngularJS Embedded Login
 
-This sample demonstrates how to add authentication to an AngularJS application using Auth0's Lock widget. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
+This sample demonstrates how to add authentication to an AngularJS application using Auth0's Lock widget embedded in your application. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
 
 ## Getting Started
 

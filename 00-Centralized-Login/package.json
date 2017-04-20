@@ -1,5 +1,5 @@
 {
-  "name": "hosted-login",
+  "name": "centralized-login",
   "version": "0.0.0",
   "description": "Implement a Auth0 authentication using the hosted login page",
   "main": "index.js",
