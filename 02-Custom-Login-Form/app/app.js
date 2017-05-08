@@ -46,7 +46,8 @@
       domain: AUTH0_DOMAIN,
       responseType: 'token id_token',
       audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
-      redirectUri: AUTH0_CALLBACK_URL
+      redirectUri: AUTH0_CALLBACK_URL,
+      scope: 'openid'
     });
 
     $urlRouterProvider.otherwise('/');
