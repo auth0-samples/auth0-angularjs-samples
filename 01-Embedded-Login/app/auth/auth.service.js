@@ -20,9 +20,12 @@
         if (authResult && authResult.accessToken && authResult.idToken) {
           setSession(authResult);
           $state.go('home');
-        } else if (authResult && authResult.error) {
-          alert(authResult.error);
         }
+      });
+      lock.on('authorization_error', function(err) {
+        $state.go('home');
+        console.log(err);
+        alert('Error: ' + err.error + '. Check the console for further details.');
       });
     }
 

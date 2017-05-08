@@ -1,6 +1,6 @@
-# Auth0 AngularJS Authorization
+# Auth0 AngularJS Calling an API
 
-This sample demonstrates how to include user authorization in an AngularJS application with Auth0. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
+This sample demonstrates how to make secure calls to an API after authenticating a user with Auth0. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
 
 ## Getting Started
 
@@ -9,11 +9,11 @@ If you haven't already done so, [sign up](https://auth0.com) for your free Auth0
 Clone the repo or download it from the AngularJS quickstart page in Auth0's documentation. Install the dependencies for the app.
 
 ```bash
-cd 05-Authorization
+cd 04-Calling-an-API
 npm install
 ```
 
-## Set the Client ID and Domain, and API URL
+## Set the Client ID and Domain, and APUI URL
 
 If you download the sample from the quickstart page, it will come pre-populated with the **client ID** and **domain** for your application. If you clone the repo directly from Github, rename the `auth0-variables.js.example` file to `auth0-variables.js` and provide the **client ID** and **domain** there.
 

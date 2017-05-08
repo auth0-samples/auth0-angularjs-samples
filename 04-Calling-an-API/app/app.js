@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('app', ['auth0.lock', 'angular-jwt', 'ui.router'])
+    .module('app', ['auth0.auth0', 'angular-jwt', 'ui.router'])
     .config(config);
 
   config.$inject = [
@@ -11,7 +11,7 @@
     '$locationProvider',
     '$urlRouterProvider',
     '$httpProvider',
-    'lockProvider',
+    'angularAuth0Provider',
     'jwtOptionsProvider'
   ];
 
@@ -20,7 +20,7 @@
     $locationProvider,
     $urlRouterProvider,
     $httpProvider,
-    lockProvider,
+    angularAuth0Provider,
     jwtOptionsProvider
   ) {
 
@@ -35,29 +35,13 @@
         url: '/profile',
         controller: 'ProfileController',
         templateUrl: 'app/profile/profile.html',
-        controllerAs: 'vm',
-        data: {
-          requiresLogin: true
-        }
-      })
-      .state('admin', {
-        url: '/admin',
-        controller: 'AdminController',
-        templateUrl: 'app/admin/admin.html',
-        controllerAs: 'vm',
-        data: { 
-          requiresLogin: true,
-          accessLevel: 'admin'
-        }
+        controllerAs: 'vm'
       })
       .state('ping', {
         url: '/ping',
         controller: 'PingController',
         templateUrl: 'app/ping/ping.html',
-        controllerAs: 'vm',
-        data: {
-          requiresLogin: true
-        }
+        controllerAs: 'vm'
       })
       .state('callback', {
         url: '/callback',
@@ -66,19 +50,14 @@
         controllerAs: 'vm'
       });
 
-    // Initialization for the angular-lock library
-    lockProvider.init({ clientID: AUTH0_CLIENT_ID, domain: AUTH0_DOMAIN, options: {
-        oidcConformant: true,
-        autoclose: true,
-        auth: {
-          responseType: 'token id_token',
-          audience: AUTH0_AUDIENCE,
-          redirectUrl: AUTH0_CALLBACK_URL,
-          params: {
-            scope: 'openid profile read:messages'
-          }
-        }
-      }
+    // Initialization for the angular-auth0 library
+    angularAuth0Provider.init({
+      clientID: AUTH0_CLIENT_ID,
+      domain: AUTH0_DOMAIN,
+      responseType: 'token id_token',
+      audience: AUTH0_AUDIENCE,
+      redirectUri: AUTH0_CALLBACK_URL,
+      scope: 'openid profile read:messages'
     });
 
     jwtOptionsProvider.config({

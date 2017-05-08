@@ -24,6 +24,8 @@
             $state.go('home');
           });
           alert('Error: ' + err.error);
+          console.log(err);
+          alert('Error: ' + err.error + '. Check the console for further details.');
         }
       });
     }

@@ -16,7 +16,11 @@
         username: username,
         password: password,
       }, function(err, authResult) {
-        if (err) alert(err);
+        if (err) {
+          $state.go('home');
+          console.log(err);
+          alert('Error: ' + err.error + '. Check the console for further details.');
+        }
         if (authResult && authResult.idToken) {
           setSession(authResult);
           $state.go('home');
@@ -47,7 +51,8 @@
           $timeout(function() {
             $state.go('home');
           });
-          alert('Error: ' + err.error);
+          console.log(err);
+          alert('Error: ' + err.error + '. Check the console for further details.');
         }
       });
     }
