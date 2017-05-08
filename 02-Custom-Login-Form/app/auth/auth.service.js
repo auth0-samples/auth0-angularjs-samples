@@ -17,9 +17,9 @@
         password: password,
       }, function(err, authResult) {
         if (err) {
-          $state.go('home');
           console.log(err);
-          alert('Error: ' + err.error + '. Check the console for further details.');
+          alert('Error: ' + err.description + '. Check the console for further details.');
+          return;
         }
         if (authResult && authResult.idToken) {
           setSession(authResult);
@@ -33,6 +33,12 @@
         connection: 'Username-Password-Authentication',
         email: username,
         password: password
+      }, function(err) {
+        if (err) {
+          console.log(err);
+          alert(`Error: ${err.description}. Check the console for further details.`);
+          return;
+        }
       });
     }
 
