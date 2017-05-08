@@ -3,21 +3,21 @@
   'use strict';
 
   angular
-    .module('app', ['auth0.lock', 'ui.router'])
+    .module('app', ['auth0.auth0', 'ui.router'])
     .config(config);
 
   config.$inject = [
     '$stateProvider',
     '$locationProvider',
     '$urlRouterProvider',
-    'lockProvider'
+    'angularAuth0Provider'
   ];
 
   function config(
     $stateProvider,
     $locationProvider,
     $urlRouterProvider,
-    lockProvider
+    angularAuth0Provider
   ) {
 
     $stateProvider
@@ -40,19 +40,14 @@
         controllerAs: 'vm'
       });
 
-    // Initialization for the angular-lock library
-    lockProvider.init({ clientID: AUTH0_CLIENT_ID, domain: AUTH0_DOMAIN, options: {
-        oidcConformant: true,
-        autoclose: true,
-        auth: {
-          responseType: 'token id_token',
-          audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
-          redirectUrl: AUTH0_CALLBACK_URL,
-          params: {
-            scope: 'openid profile'
-          }
-        }
-      }
+    // Initialization for the angular-auth0 library
+    angularAuth0Provider.init({
+      clientID: AUTH0_CLIENT_ID,
+      domain: AUTH0_DOMAIN,
+      responseType: 'token id_token',
+      audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
+      redirectUri: AUTH0_CALLBACK_URL,
+      scope: 'openid profile'
     });
 
     $urlRouterProvider.otherwise('/');

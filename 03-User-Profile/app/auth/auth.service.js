@@ -6,24 +6,27 @@
     .module('app')
     .service('authService', authService);
 
-  authService.$inject = ['$state', 'lock'];
+  authService.$inject = ['$state', 'angularAuth0', '$timeout'];
 
-  function authService($state, lock) {
+  function authService($state, angularAuth0, $timeout) {
 
     var userProfile;
 
-    function login() {
-      lock.show();
+    function login(username, password) {
+      angularAuth0.authorize();
     }
     
     function handleAuthentication() {
-      lock.interceptHash();
-      lock.on('authenticated', function(authResult) {
-        if (authResult && authResult.accessToken && authResult.idToken) {
+      angularAuth0.parseHash(function(err, authResult) {
+        if (authResult && authResult.idToken) {
           setSession(authResult);
           $state.go('home');
-        } else if (authResult && authResult.error) {
-          alert(authResult.error);
+        } else if (err) {
+          $timeout(function() {
+            $state.go('home');
+          });
+          console.log(err);
+          alert('Error: ' + err.error + '. Check the console for further details.');
         }
       });
     }
@@ -31,9 +34,9 @@
     function getProfile(cb) {
       var accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
-        throw 'Access token must exist to fetch profile';
+        throw new Error('Access token must exist to fetch profile');
       }
-      lock.getUserInfo(accessToken, function(err, profile) {
+      angularAuth0.client.userInfo(accessToken, function(err, profile) {
         if (profile) {
           setUserProfile(profile);
         }
@@ -56,14 +59,12 @@
       localStorage.setItem('id_token', authResult.idToken);
       localStorage.setItem('expires_at', expiresAt);
     }
-
+    
     function logout() {
       // Remove tokens and expiry time from localStorage
       localStorage.removeItem('access_token');
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
-      userProfile = null;
-      $state.go('home');
     }
     
     function isAuthenticated() {

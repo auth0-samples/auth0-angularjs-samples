@@ -10,9 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.6.1",
-    "angular-auth0": "^2.0.0-beta.0",
+    "angular-auth0": "^2.0.0-beta.1",
     "angular-ui-router": "^0.4.2",
-    "auth0-js": "^8.3.0",
+    "auth0-js": "^8.6.0",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0"
   }
