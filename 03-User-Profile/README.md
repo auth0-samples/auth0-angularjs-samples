@@ -1,4 +1,4 @@
-# Auth0 AngularJS User Sessions
+# Auth0 AngularJS User Profile
 
 This sample demonstrates how to get a user's profile using Auth0 in an AngularJS application. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
 
