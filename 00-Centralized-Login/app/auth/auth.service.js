@@ -10,7 +10,7 @@
 
   function authService($state, angularAuth0, $timeout) {
 
-    function login(username, password) {
+    function login() {
       angularAuth0.authorize();
     }
     
