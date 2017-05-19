@@ -12,7 +12,7 @@
 
     var userProfile;
 
-    function login(username, password) {
+    function login() {
       angularAuth0.authorize();
     }
     
