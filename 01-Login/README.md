@@ -1,6 +1,6 @@
-# Auth0 AngularJS Calling an API
+# Auth0 AngularJS Centralized Login
 
-This sample demonstrates how to make secure calls to an API after authenticating a user with Auth0. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
+This sample demonstrates how to add authentication to an AngularJS application using Auth0's Lock widget from the hosted login page. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
 
 ## Getting Started
 
@@ -9,21 +9,13 @@ If you haven't already done so, [sign up](https://auth0.com) for your free Auth0
 Clone the repo or download it from the AngularJS quickstart page in Auth0's documentation. Install the dependencies for the app.
 
 ```bash
-cd 04-Calling-an-API
+cd 01-Login
 npm install
 ```
 
-## Set the Client ID and Domain, and APUI URL
+## Set the Client ID and Domain
 
 If you download the sample from the quickstart page, it will come pre-populated with the **client ID** and **domain** for your application. If you clone the repo directly from Github, rename the `auth0-variables.js.example` file to `auth0-variables.js` and provide the **client ID** and **domain** there.
-
-You should also provide the identifier for the API you create in the Auth0 dashboard as your `apiUrl`.
-
-## Set Up the `.env` File
-
-In addition to the above-mentioned `auth0-variables.js` file, a `.env` file is provided at the root of the application. This file provides your application's credentials to the small Node server located in `server.js`.
-
-This file has two values, `AUTH0_AUDIENCE` and `AUTH0_DOMAIN`. If you download this sample from the quickstart page, the value for `AUTH0_DOMAIN` will be populated automatically, but you will still need to populate `AUTH0_AUDIENCE` manually. The value for `AUTH0_AUDIENCE` is the identifier used for an API that you create in the Auth0 dashboard.
 
 ## Run the Application
 
