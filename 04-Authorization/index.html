@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Authorization</title>
+    <base href="/">
+    <!-- Viewport settings-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Basic style -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div ng-app="app">
+
+      <navbar></navbar>
+
+      <div class="container">
+        <ui-view></ui-view>
+      </div>
+
+    </div>
+    
+    <script type="text/javascript" src="node_modules/auth0-js/build/auth0.js"></script>
+    <script type="text/javascript" src="auth0-variables.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.js"></script>
+    <script type="text/javascript" src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="node_modules/angular-auth0/dist/angular-auth0.js"></script>
+    <script type="text/javascript" src="node_modules/angular-jwt/dist/angular-jwt.js"></script>
+    <script type="text/javascript" src="app/app.js"></script>
+    <script type="text/javascript" src="app/app.run.js"></script>
+    <script type="text/javascript" src="app/navbar/navbar.directive.js"></script>
+    <script type="text/javascript" src="app/home/home.controller.js"></script>
+    <script type="text/javascript" src="app/profile/profile.controller.js"></script>
+    <script type="text/javascript" src="app/ping/ping.controller.js"></script>
+    <script type="text/javascript" src="app/admin/admin.controller.js"></script>
+    <script type="text/javascript" src="app/callback/callback.controller.js"></script>
+    <script type="text/javascript" src="app/auth/auth.service.js"></script>
+  </body>
+</html>
