@@ -14,7 +14,7 @@
     "angular": "^1.6.1",
     "angular-auth0": "^2.0.0-beta.2",
     "angular-jwt": "^0.1.8",
-    "angular-ui-router": "^1.0.3",
+    "@uirouter/angularjs": "^1.0.3",
     "auth0-js": "^8.7.0",
     "bootstrap": "^3.3.7",
     "cors": "^2.8.1",
