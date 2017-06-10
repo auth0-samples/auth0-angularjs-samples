@@ -74,7 +74,7 @@
       localStorage.removeItem('id_token');
       localStorage.removeItem('expires_at');
       localStorage.removeItem('scopes');
-      $state.target('home');
+      $state.go('home');
     }
     
     function isAuthenticated() {
