@@ -6,9 +6,9 @@
     .module('app')
     .controller('ProfileController', profileController);
 
-  profileController.$inject = ['authService'];
+  profileController.$inject = ['$scope', 'authService'];
 
-  function profileController(authService) {
+  function profileController($scope, authService) {
 
     var vm = this;
     vm.auth = authService;
@@ -19,6 +19,7 @@
     } else {
       authService.getProfile(function(err, profile) {
         vm.profile = profile;
+        $scope.$apply();
       });
     }
 
