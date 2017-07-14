@@ -15,7 +15,9 @@
     }
     
     function handleAuthentication() {
-      lock.interceptHash();
+      // uncomment if you are not using HTML5Mode
+      // lock.interceptHash();
+      
       lock.on('authenticated', function(authResult) {
         if (authResult && authResult.accessToken && authResult.idToken) {
           setSession(authResult);
