@@ -1,5 +1,5 @@
 {
-  "name": "centralized-login",
+  "name": "token-renewal",
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,8 @@
     "angular-auth0": "^2.0.0",
     "auth0-js": "^8.8.0",
     "bootstrap": "^3.3.7",
-    "express": "^4.14.0"
+    "connect-static-file": "^1.2.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4"
   }
 }

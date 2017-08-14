@@ -1,7 +1,6 @@
 {
   "name": "calling-an-api",
   "version": "0.0.0",
-  "description": "Implement a custom login form with Auth0",
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel server api",
