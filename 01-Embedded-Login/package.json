@@ -13,7 +13,7 @@
     "angular": "^1.6.1",
     "angular-auth0": "^2.0.0",
     "angular-lock": "^2.0.3",
-    "auth0-js": "^8.8.0",
+    "auth0-js": "^8.10.1",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0"
   }
