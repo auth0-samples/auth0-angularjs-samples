@@ -79,16 +79,11 @@
     }
 
     function renewToken() {
-      angularAuth0.renewAuth(
-        {
-          audience: AUTH0_AUDIENCE,
-          redirectUri: AUTH0_SILENT_AUTH_REDIRECT,
-          usePostMessage: true
-        },
+      angularAuth0.checkSession({},
         function(err, result) {
           if (err) {
             alert(
-              'Could not get a new token using silent authentication. ' +
+              'Could not get a new token. ' +
                 err.description
             );
           } else {

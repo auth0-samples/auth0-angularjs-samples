@@ -5,7 +5,6 @@ const cors = require('cors');
 const staticFile = require('connect-static-file');
 
 app.use(cors());
-app.use('/silent', staticFile(`${__dirname}/silent.html`));
 
 app.use('/', express.static(__dirname +  '/'));
 

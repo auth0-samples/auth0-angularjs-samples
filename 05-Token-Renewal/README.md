@@ -1,10 +1,8 @@
 # Auth0 AngularJS Token Renewal
 
-This sample demonstrates how to silently renew `access_token`s in an AngularJS application with Auth0.
+This sample demonstrates how to renew `access_token`s in an AngularJS application with Auth0.
 
 ## Getting Started
-
-Create a new API in the [APIs section](https://manage.auth0.com/#/apis) and provide an identifier for it.
 
 Clone the repo or download it from the AngularJS quickstart page in Auth0's documentation.
 
@@ -13,15 +11,12 @@ cd 05-Token-Renewal
 npm install
 ```
 
-## Set the Client ID, Domain, and API URL
+## Set the Client ID and Domain
 
-If you download the sample from the quickstart page, it will come pre-populated with the **client ID** and **domain** for your application. If you clone the repo directly from Github, rename the `auth0-variables.js.example` file to `auth0-variables.js` and provide the **client ID** and **domain** there.
+If you download the sample from the quickstart page, it will come pre-populated with the **client ID** and **domain** for your application. If you clone the repo directly from Github, rename the `auth0-variables.js.example` file to `auth0-variables.js` and provide the **client ID** and **domain
 
-You should also provide the identifier for the API you create in the Auth0 dashboard as your `AUTH0_AUDIENCE`.
-
-## Set Up the `silent.html` File
-
-If you download the sample from the quickstart page, it will come pre-populated with the **client ID** and **domain** for your application. If you clone the repo directly from Github, edit `silent.html` and add your **client ID** and **domain**.
+## Set Up `Allowed Web Origins` in the dashboard
+In order to make `checkSession` work, you need to add the URL where the authorization request originates from, to the Allowed Web Origins list of your Auth0 client in the Dashboard under your client's Settings.
 
 ## Run the Application
 

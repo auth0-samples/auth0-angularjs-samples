@@ -45,7 +45,6 @@
       clientID: AUTH0_CLIENT_ID,
       domain: AUTH0_DOMAIN,
       responseType: 'token id_token',
-      audience: AUTH0_AUDIENCE,
       redirectUri: AUTH0_CALLBACK_URL,
       scope: 'openid profile'
     });
