@@ -36,15 +36,11 @@
 
     // Initialization for the angular-lock library
     lockProvider.init({ clientID: AUTH0_CLIENT_ID, domain: AUTH0_DOMAIN, options: {
-        oidcConformant: true,
         autoclose: true,
         auth: {
           responseType: 'token id_token',
           audience: 'https://' + AUTH0_DOMAIN + '/userinfo',
-          redirectUrl: AUTH0_CALLBACK_URL,
-          params: {
-            scope: 'openid'
-          }
+          redirectUrl: AUTH0_CALLBACK_URL
         }       
       }
     });
