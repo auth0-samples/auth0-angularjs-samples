@@ -12,7 +12,7 @@ app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
-const hostname = 'localhost';
+const hostname = '0.0.0.0';
 const port = 3000;
 
 const server = app.listen(port, hostname, () => {
