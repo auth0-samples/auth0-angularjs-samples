@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm-run-all --parallel server api",
     "server": "node server.js",
-    "api": "node api.js"
+    "api": "node api.js",
+    "test": "npm-check"
   },
   "author": "Auth0",
   "license": "MIT",
@@ -23,5 +24,8 @@
     "express-jwt-authz": "^1.0.0",
     "jwks-rsa": "^1.1.1",
     "npm-run-all": "^4.0.0"
+  },
+  "devDependencies": {
+    "npm-check": "^5.5.2"
   }
 }

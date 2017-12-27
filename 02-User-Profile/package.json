@@ -4,7 +4,8 @@
   "description": "Implement a custom login form with Auth0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "npm-check"
   },
   "author": "Auth0",
   "license": "MIT",
@@ -15,5 +16,8 @@
     "auth0-js": "^9.0.1",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "npm-check": "^5.5.2"
   }
 }

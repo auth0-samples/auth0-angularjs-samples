@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "npm-check"
   },
   "author": "Auth0",
   "license": "MIT",
@@ -16,5 +17,8 @@
     "connect-static-file": "^1.2.0",
     "cors": "^2.8.4",
     "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "npm-check": "^5.5.2"
   }
 }
