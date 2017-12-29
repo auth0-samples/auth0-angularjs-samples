@@ -10,6 +10,7 @@
       </button>
 
       <button
+        id="qsLoginBtn"
         class="btn btn-primary btn-margin"
         ng-if="!vm.auth.isAuthenticated()"
         ng-click="vm.auth.login()">
@@ -17,6 +18,7 @@
       </button>
 
       <button
+        id="qsLogoutBtn"
         class="btn btn-primary btn-margin"
         ng-if="vm.auth.isAuthenticated()"
         ng-click="vm.auth.logout()">
