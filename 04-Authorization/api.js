@@ -42,5 +42,13 @@ app.post('/api/admin', checkJwt, checkScopesAdmin, function(req, res) {
   res.json({ message: "Hello from an admin endpoint! You need to be authenticated and have a scope of write:messages to see this." });
 });
 
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  if (err.name === 'UnauthorizedError')
+    return res.status(401).json({ message: err.message });
+
+  res.status(500).json({ message: err.message });
+});
+
 app.listen(3001);
 console.log('Listening on http://localhost:3001');

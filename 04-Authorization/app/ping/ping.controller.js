@@ -29,7 +29,7 @@
       $http.get(API_URL + '/private').then(function(result) {
         vm.message = result.data.message;
       }, function(error) {
-        vm.message = error;
+        vm.message = error.data.message || error.data;
       });
     }
 
