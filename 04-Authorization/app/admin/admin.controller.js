@@ -18,7 +18,7 @@
       $http.post(API_URL + '/admin').then(function(result) {
         vm.message = result.data.message;
       }, function(error) {
-        vm.message = error.data;
+        vm.message = error.data.message;
       });
     }
 

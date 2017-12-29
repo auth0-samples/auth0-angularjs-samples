@@ -37,5 +37,13 @@ app.get('/api/private', checkJwt, checkScopes, function(req, res) {
   res.json({ message: "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this." });
 });
 
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  if (err.name === 'UnauthorizedError')
+    return res.status(401).json({ message: err.message });
+
+  res.status(500).json({ message: err.message });
+});
+
 app.listen(3001);
 console.log('Listening on http://localhost:3001');
