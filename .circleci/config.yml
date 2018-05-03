@@ -11,10 +11,11 @@ defaults: &defaults
       - run:
           name: Replace Auth0 test credentials
           command: |
-            mv $AUTH0_CFG.example $AUTH0_CFG
-            sed -i 's/{CLIENT_ID}/'$AUTH0_CLIENT_ID'/g' $AUTH0_CFG
-            sed -i 's/{DOMAIN}/'$AUTH0_DOMAIN'/g' $AUTH0_CFG
-            sed -i 's/{API_IDENTIFIER}/'$AUTH0_API_IDENTIFIER'/g' $AUTH0_CFG
+            echo "var AUTH0_CLIENT_ID='$AUTH0_TEST_CLIENT_ID';" >> $AUTH0_CFG
+            echo "var AUTH0_DOMAIN='$AUTH0_TEST_DOMAIN';" >> $AUTH0_CFG
+            echo "var AUTH0_AUDIENCE='$AUTH0_TEST_AUDIENCE';" >> $AUTH0_CFG
+            echo "var AUTH0_CALLBACK_URL=location.href;" >> $AUTH0_CFG
+          
       - run:
           name: Build pull request
           command: |
@@ -28,7 +29,7 @@ defaults: &defaults
       - run: 
           name: Run tests
           command: |
-            docker create --network host --name tester codeception/codeceptjs codeceptjs run-multiple --all --steps
+            docker create --network host --name tester codeception/codeceptjs codeceptjs run-multiple --all --steps --verbose
             docker cp $(pwd)/lock_login_test.js tester:/tests/lock_login_test.js
             docker cp $(pwd)/codecept.conf.js tester:/tests/codecept.conf.js
             docker start -i tester
@@ -59,31 +60,31 @@ jobs:
   01-login:
     machine: true
     environment:
-      - AUTH0_CFG: 01-Login/src/app/auth/auth0-variables.ts
+      - AUTH0_CFG: 01-Login/auth0-variables.js
       - SAMPLE_PATH: 01-Login
     <<: *defaults
   02-user-profile:
     machine: true
     environment:
-      - AUTH0_CFG: 02-User-Profile/src/app/auth/auth0-variables.ts
+      - AUTH0_CFG: 02-User-Profile/auth0-variables.js
       - SAMPLE_PATH: 02-User-Profile
     <<: *defaults
   03-calling-an-api:
     machine: true
     environment:
-      - AUTH0_CFG: 03-Calling-an-API/src/app/auth/auth0-variables.ts
+      - AUTH0_CFG: 03-Calling-an-API/auth0-variables.js
       - SAMPLE_PATH: 03-Calling-an-API
     <<: *defaults
   04-authorization:
     machine: true
     environment:
-      - AUTH0_CFG: 04-Authorization/src/app/auth/auth0-variables.ts
+      - AUTH0_CFG: 04-Authorization/auth0-variables.js
       - SAMPLE_PATH: 04-Authorization
     <<: *defaults
   05-token-renewal:
     machine: true
     environment:
-      - AUTH0_CFG: 05-Token-Renewal/src/app/auth/auth0-variables.ts
+      - AUTH0_CFG: 05-Token-Renewal/auth0-variables.js
       - SAMPLE_PATH: 05-Token-Renewal
     <<: *defaults
 
