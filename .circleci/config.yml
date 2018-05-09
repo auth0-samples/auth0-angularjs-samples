@@ -14,7 +14,7 @@ defaults: &defaults
             echo "var AUTH0_CLIENT_ID='$AUTH0_TEST_CLIENT_ID';" >> $AUTH0_CFG
             echo "var AUTH0_DOMAIN='$AUTH0_TEST_DOMAIN';" >> $AUTH0_CFG
             echo "var AUTH0_AUDIENCE='$AUTH0_TEST_AUDIENCE';" >> $AUTH0_CFG
-            echo "var AUTH0_CALLBACK_URL=location.href;" >> $AUTH0_CFG
+            echo "var AUTH0_CALLBACK_URL='http://localhost:3000/callback';" >> $AUTH0_CFG
           
       - run:
           name: Build pull request
