@@ -2,6 +2,8 @@
 
 This sample demonstrates how to add authentication to an AngularJS application using Auth0's Lock widget embedded in your application. The sample get its dependencies from npm and a small Node.js server is provided to run the application.
 
+Note that embedded login uses Cross Origin Authentication which [does not work well](https://auth0.com/docs/cross-origin-authentication#limitations-of-cross-origin-authentication) if you don't enable Custom Domains [Custom Domains](https://auth0.com/docs/custom-domains) which is a paid feature. 
+
 ## Getting Started
 
 If you haven't already done so, [sign up](https://auth0.com) for your free Auth0 account and create a new client in the [dashboard](https://manage.auth0.com). Find the **domain** and **client ID** from the settings area and add the URL for your application to the **Allowed Callback URLs** box. If you are using the server provided in this sample, that URL is `http://localhost:3000`.
