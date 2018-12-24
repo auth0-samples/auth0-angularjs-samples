@@ -22,7 +22,7 @@
       }, function(error) {
         vm.message = error;
       });
-    }
+    };
 
     vm.securedPing = function() {
       vm.message = '';
