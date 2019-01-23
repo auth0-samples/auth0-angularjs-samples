@@ -10,16 +10,28 @@
 
   function authService($state, angularAuth0, $timeout) {
 
+    var idToken;
+    var accessToken;
+    var expiresAt;
+    var scopes;
     var userProfile;
+
+    function getIdToken() {
+      return idToken;
+    }
+
+    function getAccessToken() {
+      return accessToken;
+    }
 
     function login() {
       angularAuth0.authorize();
     }
-    
+
     function handleAuthentication() {
       angularAuth0.parseHash(function(err, authResult) {
         if (authResult && authResult.idToken) {
-          setSession(authResult);
+          localLogin(authResult);
           $state.go('home');
         } else if (err) {
           $timeout(function() {
@@ -32,7 +44,6 @@
     }
 
     function getProfile(cb) {
-      var accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
         throw new Error('Access token must exist to fetch profile');
       }
@@ -52,42 +63,55 @@
       return userProfile;
     }
 
-    function setSession(authResult) {
+    function localLogin(authResult) {
+      // Set isLoggedIn flag in localStorage
+      localStorage.setItem('isLoggedIn', 'true');
       // Set the time that the access token will expire at
-      let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+      expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
 
       // If there is a value on the `scope` param from the authResult,
       // use it to set scopes in the session for the user. Otherwise
       // use the scopes as requested. If no scopes were requested,
       // set it to nothing
-      var scopes = authResult.scope || REQUESTED_SCOPES || '';
+      scopes = authResult.scope || REQUESTED_SCOPES || '';
 
-      localStorage.setItem('access_token', authResult.accessToken);
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem('expires_at', expiresAt);
-      localStorage.setItem('scopes', JSON.stringify(scopes));
+      accessToken = authResult.accessToken;
+      idToken = authResult.idToken;
     }
-    
+
+    function renewTokens() {
+      angularAuth0.checkSession({},
+          function(err, result) {
+            if (err) {
+              console.log(err);
+            } else {
+              localLogin(result);
+            }
+          }
+      );
+    }
+
     function logout() {
+      // Remove isLoggedIn flag from localStorage
+      localStorage.removeItem('isLoggedIn');
       // Remove tokens and expiry time from localStorage
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('id_token');
-      localStorage.removeItem('expires_at');
-      localStorage.removeItem('scopes');
+      accessToken = '';
+      idToken = '';
+      expiresAt = 0;
+      scopes = '';
       $state.go('home');
     }
-    
+
     function isAuthenticated() {
-      // Check whether the current time is past the 
+      // Check whether the current time is past the
       // access token's expiry time
-      let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-      return new Date().getTime() < expiresAt;
+      return localStorage.getItem('isLoggedIn') === 'true' && new Date().getTime() < expiresAt;
     }
 
-    function userHasScopes(scopes) {
+    function userHasScopes(requestedScopes) {
       var grantedScopes = JSON.parse(localStorage.getItem('scopes')).split(' ');
-      for (var i = 0; i < scopes.length; i++) {
-        if (grantedScopes.indexOf(scopes[i]) < 0) {
+      for (var i = 0; i < requestedScopes.length; i++) {
+        if (grantedScopes.indexOf(requestedScopes[i]) < 0) {
           return false;
         }
       }
@@ -96,11 +120,14 @@
 
     return {
       login: login,
+      getIdToken: getIdToken,
+      getAccessToken: getAccessToken,
       getProfile: getProfile,
       getCachedProfile: getCachedProfile,
       handleAuthentication: handleAuthentication,
       logout: logout,
       isAuthenticated: isAuthenticated,
+      renewTokens: renewTokens,
       userHasScopes: userHasScopes
     }
   }

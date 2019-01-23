@@ -61,9 +61,9 @@
     });
 
     jwtOptionsProvider.config({
-      tokenGetter: function() {
-        return localStorage.getItem('access_token');
-      },
+      tokenGetter: ['authService', function(authService) {
+        return authService.getAccessToken();
+      }],
       whiteListedDomains: ['localhost']
     });
 

@@ -10,14 +10,26 @@
 
   function authService($state, angularAuth0, $timeout) {
 
+    var accessToken;
+    var idToken;
+    var expiresAt;
+
+    function getIdToken() {
+      return idToken;
+    }
+
+    function getAccessToken() {
+      return accessToken;
+    }
+
     function login() {
       angularAuth0.authorize();
     }
-    
+
     function handleAuthentication() {
       angularAuth0.parseHash(function(err, authResult) {
         if (authResult && authResult.accessToken && authResult.idToken) {
-          setSession(authResult);
+          localLogin(authResult);
           $state.go('home');
         } else if (err) {
           $timeout(function() {
@@ -29,34 +41,51 @@
       });
     }
 
-    function setSession(authResult) {
+    function localLogin(authResult) {
+      // Set isLoggedIn flag in localStorage
+      localStorage.setItem('isLoggedIn', 'true');
       // Set the time that the access token will expire at
-      let expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-      localStorage.setItem('access_token', authResult.accessToken);
-      localStorage.setItem('id_token', authResult.idToken);
-      localStorage.setItem('expires_at', expiresAt);
+      expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
+      accessToken = authResult.accessToken;
+      idToken = authResult.idToken;
     }
-    
+
+    function renewTokens() {
+      angularAuth0.checkSession({},
+        function(err, result) {
+          if (err) {
+            console.log(err);
+          } else {
+            localLogin(result);
+          }
+        }
+      );
+    }
+
     function logout() {
-      // Remove tokens and expiry time from localStorage
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('id_token');
-      localStorage.removeItem('expires_at');
+      // Remove isLoggedIn flag from localStorage
+      localStorage.removeItem('isLoggedIn');
+      // Remove tokens and expiry time
+      accessToken = '';
+      idToken = '';
+      expiresAt = 0;
       $state.go('home');
     }
-    
+
     function isAuthenticated() {
       // Check whether the current time is past the 
       // access token's expiry time
-      let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-      return new Date().getTime() < expiresAt;
+      return localStorage.getItem('isLoggedIn') === 'true' && new Date().getTime() < expiresAt;
     }
 
     return {
       login: login,
+      getIdToken: getIdToken,
+      getAccessToken: getAccessToken,
       handleAuthentication: handleAuthentication,
       logout: logout,
-      isAuthenticated: isAuthenticated
+      isAuthenticated: isAuthenticated,
+      renewTokens: renewTokens
     }
   }
 })();
