@@ -81,6 +81,11 @@
       idToken = '';
       expiresAt = 0;
       clearTimeout(tokenRenewalTimeout);
+
+      angularAuth0.logout({
+        return_to: window.location.origin
+      });
+
       $state.go('home');
     }
     
