@@ -12,8 +12,8 @@
     "@uirouter/angularjs": "^1.0.5",
     "angular": "^1.6.1",
     "angular-auth0": "^3.0.0",
-    "auth0-js": "^9.0.1",
-    "bootstrap": "^3.3.7",
+    "auth0-js": "^9.11.2",
+    "bootstrap": "^3.4.1",
     "connect-static-file": "^1.2.0",
     "cors": "^2.8.4",
     "express": "^4.15.4"
