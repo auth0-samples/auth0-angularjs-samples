@@ -2,11 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/auth0-samples/auth0-angularjs-samples/tree/master.svg?style=svg)](https://circleci.com/gh/auth0-samples/auth0-angularjs-samples/tree/master)
 
-These samples demonstrate how to add authentication to an AngularJS application with Auth0. Each folder contains a distinct application so that various Auth0 features can be viewed in isolation. You can read about these examples in our [AngularJS Quickstart](https://auth0.com/docs/quickstart/spa/angularjs).
-
-These samples use Auth0's [hosted login page](https://auth0.com/docs/hosted-pages/login) which offers the fastest, most secure, and most feature-rich way to add authentication to your app.
-
-For examples which demonstrate embedding the Lock widget directly into your application, see the [embedded-login](https://github.com/auth0-samples/auth0-angularjs-samples/tree/embedded-login) branch.
+This repository has been deprecated. Please see the [updated Angular Quickstart](https://auth0.com/docs/quickstart/spa/angular2) for guidance.
 
 ## What is Auth0?
 
